@@ -11,7 +11,6 @@ const setHeight = document.getElementById("set-height");
 const vid = document.getElementById('scrollVideo');
 const contentDiv = document.querySelector('#borrow');
 const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
-console.log(sidebarItems);
 
 
 vid.addEventListener('loadedmetadata', () => {
