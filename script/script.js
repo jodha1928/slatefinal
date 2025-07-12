@@ -6,11 +6,15 @@ function switchTab(tabName) {
     document.getElementById(tabName).style.display = 'flex';
 }
 
-const playbackConst = 200;
+const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+const playbackConst = isMobile ? 100 : 200;
+
 const setHeight = document.getElementById("set-height");
 const vid = document.getElementById('scrollVideo');
 const contentDiv = document.querySelector('#borrow');
 const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
+
+let targetTime = 0;
 
 vid.addEventListener('loadedmetadata', () => {
     const totalScrollHeight = Math.floor(vid.duration * playbackConst);
@@ -23,12 +27,7 @@ contentDiv.addEventListener('scroll', () => {
     if (!ticking) {
         requestAnimationFrame(() => {
             const scrollTop = contentDiv.scrollTop;
-            const frameNumber = scrollTop / playbackConst;
-
-            // Avoid unnecessary seeking for smoother video
-            if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
-                vid.currentTime = frameNumber;
-            }
+            targetTime = scrollTop / playbackConst;
 
             toggleActiveItem(scrollTop);
             ticking = false;
@@ -36,6 +35,15 @@ contentDiv.addEventListener('scroll', () => {
         ticking = true;
     }
 });
+
+// Smooth interpolation of video currentTime
+function animateVideo() {
+    if (Math.abs(vid.currentTime - targetTime) > 0.01) {
+        vid.currentTime += (targetTime - vid.currentTime) * 0.1;
+    }
+    requestAnimationFrame(animateVideo);
+}
+animateVideo();
 
 function toggleActiveItem(scrollTop) {
     const height = setHeight.offsetHeight;
