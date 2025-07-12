@@ -219,6 +219,7 @@ table {
     /* Firefox */
     -ms-overflow-style: none;
     /* IE and Edge */
+    border-radius: 5px;
 }
 
 .content-container::-webkit-scrollbar {
@@ -379,6 +380,7 @@ table {
         width: 100%;
         box-sizing: border-box;
         padding: 0;
+        position: relative;
     }
     .content video {
         height: 250px;
@@ -390,6 +392,24 @@ table {
         margin: 0;
         padding: 10px 16px;
         border-top: 1px dashed #BCBCBC;
+        border-radius: 5px;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+    }
+    .sidebar-item:first-child~.sidebar-item {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        background-color: #fff;
+        width: 100%;
+        top: 100%;
+        transition: 0.4s all ease-in-out;
+    }
+    .sidebar-item:nth-child(2).active,
+    .sidebar-item:nth-child(3).active,
+    .sidebar-item:nth-child(4).active {
+        opacity: 1;
+        top: 10px;
     }
     .sec-para {
         font-size: 12px;
