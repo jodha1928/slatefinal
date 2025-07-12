@@ -12,15 +12,29 @@ const vid = document.getElementById('scrollVideo');
 const contentDiv = document.querySelector('#borrow');
 const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
 
+let isUsingWindowScroll = false;
 
 vid.addEventListener('loadedmetadata', () => {
-    setHeight.style.height = `${Math.floor(vid.duration) * playbackConst}px`;
+    // Set scroll height to drive video duration
+    const scrollLength = Math.floor(vid.duration) * playbackConst;
+    setHeight.style.height = `${scrollLength}px`;
+
+    // Detect if scroll is on window or contentDiv
+    const hasOverflowScroll = getComputedStyle(contentDiv).overflowY === 'auto' || getComputedStyle(contentDiv).overflowY === 'scroll';
+    isUsingWindowScroll = !hasOverflowScroll;
 });
 
 function scrollPlay() {
-    let frameNumber = contentDiv.scrollTop / playbackConst;
+    // Decide scroll source
+    const scrollTop = isUsingWindowScroll ? window.scrollY : contentDiv.scrollTop;
+
+    // Sync video playback
+    const frameNumber = scrollTop / playbackConst;
     vid.currentTime = frameNumber;
-    toggleActiveItem(contentDiv.scrollTop);
+
+    // Sync sidebar item active class
+    toggleActiveItem(scrollTop);
+
     requestAnimationFrame(scrollPlay);
 }
 
@@ -30,7 +44,9 @@ function toggleActiveItem(scrollTop) {
     const itemHeight = height / totalItems;
 
     sidebarItems.forEach((item, i) => {
-        item.classList.toggle('active', scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight);
+        const start = i * itemHeight;
+        const end = (i + 1) * itemHeight;
+        item.classList.toggle('active', scrollTop >= start && scrollTop < end);
     });
 }
 
