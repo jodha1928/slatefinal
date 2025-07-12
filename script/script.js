@@ -6,7 +6,7 @@ function switchTab(tabName) {
     document.getElementById(tabName).style.display = 'flex';
 }
 
-const playbackConst = 100; // Reduced for better mobile scroll sensitivity
+const playbackConst = 200; // Reduced for better mobile scroll sensitivity
 const setHeight = document.getElementById("set-height");
 const vid = document.getElementById('scrollVideo');
 const contentDiv = document.querySelector('#borrow');
