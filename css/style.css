@@ -15,6 +15,12 @@
     src: url("../css/font/apercu_medium_pro.woff");
 }
 
+@font-face {
+    font-family: "IBM Plex Mono";
+    font-weight: 500;
+    src: url("../css/font/IBMPlexMono-Regular.woff");
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -153,7 +159,7 @@ table {
 }
 
 .site-header {
-    padding: 30px 0;
+    padding: 25px 0 20px;
     text-align: center;
 }
 
@@ -163,7 +169,8 @@ table {
 
 .main-heading {
     text-align: center;
-    font-size: 40px;
+    font-size: 32px;
+    letter-spacing: -1px;
     font-weight: 300;
     font-family: "Merriweather", serif;
 }
@@ -172,20 +179,21 @@ table {
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 18px;
 }
 
 .tab-container .btn-wrap {
     background-color: #E3E3E3;
     border-radius: 30px;
-    padding: 8px;
+    padding: 6px;
 }
 
 .tab {
-    padding: 10px 30px;
+    padding: 6px 30px;
     border: none;
     cursor: pointer;
     font-size: 18px;
+    letter-spacing: -1px;
     border-radius: 25px;
     background-color: transparent;
     color: #767676;
@@ -200,42 +208,50 @@ table {
 .content-container {
     display: flex;
     max-width: 1280px;
-    margin: 40px auto;
+    margin: 32px auto;
     border: 1px dashed #BCBCBC;
     background: #fff;
     overflow-y: scroll;
-    height: 570px;
+    height: 490px;
     position: relative;
     /* Hide scrollbar for Chrome, Safari and Opera */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
 }
+
 .content-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
 }
-.sidebar-content{
+
+.sidebar-content {
     position: sticky;
     top: 0;
     display: flex;
-
+    width: 100%;
 }
-#set-height{
+
+#set-height {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-
 }
 
-
 .sidebar {
-    width: 35%;
+    width: 523px;
     border-right: 1px dashed #ccc;
-    padding: 40px 30px 30px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .sidebar h3 {
-    font-size: 20px;
+    font-size: 24px;
+    letter-spacing: -1.68px;
     margin-bottom: 5px;
 }
 
@@ -245,20 +261,27 @@ table {
     cursor: pointer;
 }
 
+.sidebar-item:last-child {
+    margin-bottom: 0;
+}
+
 .sidebar-item.active {
     color: #000;
     font-weight: bold;
 }
 
 .content {
-    width: 65%;
+    width: calc(100% - 523px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .content video {
-    object-fit: cover;
+    object-fit: contain;
     border: none;
     outline: none;
-    height: 570px;
+    height: 400px;
     position: sticky;
     top: 0;
     width: 100%;
@@ -274,22 +297,24 @@ table {
 
 .sec-para {
     font-size: 14px;
-    margin-top: 15px;
+    margin-top: 13px;
+    letter-spacing: -1px;
     line-height: 20px;
-    display: none;
     font-family: "apercu pro";
     font-weight: 500;
 }
 
 .sec-count {
     font-size: 11px;
-    font-weight: 200;
-    font-family: "apercu pro";
+    letter-spacing: normal;
+    font-weight: 500;
+    font-family: "IBM Plex Mono";
 }
 
 .sidebar-item.active .sec-para {
     display: block;
 }
+
 
 /* #set-height {
   display: block;
@@ -300,3 +325,5 @@ table {
   left: 0;
   width: 100%;
 } */
+
+@media only screen and (max-width: 1460px) {}
