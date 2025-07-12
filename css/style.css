@@ -383,6 +383,9 @@ table {
         padding: 0;
         position: relative;
     }
+    .sidebar {
+        border: none;
+    }
     .content video {
         height: 420px;
     }
@@ -393,7 +396,7 @@ table {
         margin: 0;
         padding: 10px 16px 20px;
         border-top: 1px dashed #BCBCBC;
-        border-radius: 5px;
+        border-radius: 4px;
         box-sizing: border-box;
     }
     .sidebar-item.previous {

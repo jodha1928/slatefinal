@@ -39,19 +39,6 @@ contentDiv.addEventListener('scroll', () => {
     }
 });
 
-// function toggleActiveItem(scrollTop) {
-//     const height = setHeight.offsetHeight;
-//     const totalItems = sidebarItems.length;
-//     const itemHeight = height / totalItems;
-
-//     sidebarItems.forEach((item, i) => {
-//         item.classList.toggle(
-//             'active',
-//             scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight
-//         );
-//     });
-// }
-
 function toggleActiveItem(scrollTop) {
     const height = setHeight.offsetHeight;
     const totalItems = sidebarItems.length;
