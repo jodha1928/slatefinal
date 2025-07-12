@@ -6,20 +6,17 @@ function switchTab(tabName) {
     document.getElementById(tabName).style.display = 'flex';
 }
 
-const isMobile = window.innerWidth <= 768;
-const playbackConst = isMobile ? 60 : 200; // Reduced for better mobile scroll sensitivity
+const playbackConst = 200;
 const setHeight = document.getElementById("set-height");
 const vid = document.getElementById('scrollVideo');
 const contentDiv = document.querySelector('#borrow');
 const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
 
-// Set dynamic height based on video duration
 vid.addEventListener('loadedmetadata', () => {
     const totalScrollHeight = Math.floor(vid.duration * playbackConst);
     setHeight.style.height = `${totalScrollHeight}px`;
 });
 
-// Throttle scroll handling using requestAnimationFrame
 let ticking = false;
 
 contentDiv.addEventListener('scroll', () => {
@@ -53,7 +50,6 @@ function toggleActiveItem(scrollTop) {
         if (isActive) activeIndex = i;
     });
 
-    // Add 'previous' class to items before the active one
     sidebarItems.forEach((item, i) => {
         item.classList.toggle('previous', i < activeIndex);
     });
