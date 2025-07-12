@@ -326,4 +326,26 @@ table {
   width: 100%;
 } */
 
-@media only screen and (max-width: 1460px) {}
+@media only screen and (max-width: 1460px) {
+    .content-container {
+        height: 370px;
+    }
+    .main-heading {
+        font-size: 24px;
+    }
+    .site-header {
+        padding: 15px 0 20px;
+    }
+    .tab {
+        padding: 2px 30px;
+    }
+    .sidebar-item {
+        margin: 0 0 30px;
+    }
+    .content video {
+        height: 360px;
+    }
+    .protocol-work {
+        padding: 0 20px;
+    }
+}
