@@ -384,7 +384,7 @@ table {
         position: relative;
     }
     .content video {
-        height: 300px;
+        height: 420px;
     }
     .sidebar h3 {
         font-size: 18px;
@@ -397,6 +397,9 @@ table {
         box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
     }
+    .sidebar-item.previous {
+        padding-bottom: 130px;
+    }
     .sidebar-item:first-child~.sidebar-item {
         position: absolute;
         left: 0;
@@ -407,10 +410,19 @@ table {
         transition: 0.4s all ease-in-out;
     }
     .sidebar-item:nth-child(2).active,
-    .sidebar-item:nth-child(3).active,
-    .sidebar-item:nth-child(4).active {
+    .sidebar-item:nth-child(2).previous {
         opacity: 1;
-        top: 10px;
+        top: 40px;
+    }
+    .sidebar-item:nth-child(3).active,
+    .sidebar-item:nth-child(3).previous {
+        opacity: 1;
+        top: 80px;
+    }
+    .sidebar-item:nth-child(4).active,
+    .sidebar-item:nth-child(4).previous {
+        opacity: 1;
+        top: 120px;
     }
     .sec-para {
         font-size: 12px;

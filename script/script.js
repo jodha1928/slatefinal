@@ -39,15 +39,34 @@ contentDiv.addEventListener('scroll', () => {
     }
 });
 
+// function toggleActiveItem(scrollTop) {
+//     const height = setHeight.offsetHeight;
+//     const totalItems = sidebarItems.length;
+//     const itemHeight = height / totalItems;
+
+//     sidebarItems.forEach((item, i) => {
+//         item.classList.toggle(
+//             'active',
+//             scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight
+//         );
+//     });
+// }
+
 function toggleActiveItem(scrollTop) {
     const height = setHeight.offsetHeight;
     const totalItems = sidebarItems.length;
     const itemHeight = height / totalItems;
 
+    let activeIndex = -1;
+
     sidebarItems.forEach((item, i) => {
-        item.classList.toggle(
-            'active',
-            scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight
-        );
+        const isActive = scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight;
+        item.classList.toggle('active', isActive);
+        if (isActive) activeIndex = i;
+    });
+
+    // Add 'previous' class to items before the active one
+    sidebarItems.forEach((item, i) => {
+        item.classList.toggle('previous', i < activeIndex);
     });
 }
