@@ -390,7 +390,7 @@ table {
     }
     .sidebar-item {
         margin: 0;
-        padding: 10px 16px;
+        padding: 10px 16px 20px;
         border-top: 1px dashed #BCBCBC;
         border-radius: 5px;
         box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
