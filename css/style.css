@@ -212,6 +212,7 @@ table {
     border: 1px dashed #BCBCBC;
     background: #fff;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     height: 490px;
     position: relative;
     /* Hide scrollbar for Chrome, Safari and Opera */

@@ -17,12 +17,25 @@ vid.addEventListener('loadedmetadata', () => {
     setHeight.style.height = `${Math.floor(vid.duration) * playbackConst}px`;
 });
 
-function scrollPlay() {
-    let frameNumber = contentDiv.scrollTop / playbackConst;
-    vid.currentTime = frameNumber;
-    toggleActiveItem(contentDiv.scrollTop);
-    requestAnimationFrame(scrollPlay);
-}
+// function scrollPlay() {
+//     let frameNumber = contentDiv.scrollTop / playbackConst;
+//     vid.currentTime = frameNumber;
+//     toggleActiveItem(contentDiv.scrollTop);
+//     requestAnimationFrame(scrollPlay);
+// }
+
+let ticking = false;
+contentDiv.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            let frameNumber = contentDiv.scrollTop / playbackConst;
+            vid.currentTime = frameNumber;
+            toggleActiveItem(contentDiv.scrollTop);
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
 
 function toggleActiveItem(scrollTop) {
     const height = setHeight.offsetHeight;
