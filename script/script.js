@@ -6,23 +6,38 @@ function switchTab(tabName) {
     document.getElementById(tabName).style.display = 'flex';
 }
 
-const playbackConst = 200;
+const playbackConst = 100; // Reduced for better mobile scroll sensitivity
 const setHeight = document.getElementById("set-height");
 const vid = document.getElementById('scrollVideo');
 const contentDiv = document.querySelector('#borrow');
 const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
 
-
+// Set dynamic height based on video duration
 vid.addEventListener('loadedmetadata', () => {
-    setHeight.style.height = `${Math.floor(vid.duration) * playbackConst}px`;
+    const totalScrollHeight = Math.floor(vid.duration * playbackConst);
+    setHeight.style.height = `${totalScrollHeight}px`;
 });
 
-function scrollPlay() {
-    let frameNumber = contentDiv.scrollTop / playbackConst;
-    vid.currentTime = frameNumber;
-    toggleActiveItem(contentDiv.scrollTop);
-    requestAnimationFrame(scrollPlay);
-}
+// Throttle scroll handling using requestAnimationFrame
+let ticking = false;
+
+contentDiv.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            const scrollTop = contentDiv.scrollTop;
+            const frameNumber = scrollTop / playbackConst;
+
+            // Avoid unnecessary seeking for smoother video
+            if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
+                vid.currentTime = frameNumber;
+            }
+
+            toggleActiveItem(scrollTop);
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
 
 function toggleActiveItem(scrollTop) {
     const height = setHeight.offsetHeight;
@@ -30,8 +45,9 @@ function toggleActiveItem(scrollTop) {
     const itemHeight = height / totalItems;
 
     sidebarItems.forEach((item, i) => {
-        item.classList.toggle('active', scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight);
+        item.classList.toggle(
+            'active',
+            scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight
+        );
     });
 }
-
-requestAnimationFrame(scrollPlay);
