@@ -185,7 +185,7 @@ table {
 .tab-container .btn-wrap {
     background-color: #E3E3E3;
     border-radius: 30px;
-    padding: 6px;
+    padding: 4px;
 }
 
 .tab {
@@ -326,7 +326,7 @@ table {
   width: 100%;
 } */
 
-@media only screen and (max-width: 1460px) {
+@media only screen and (max-width: 1440px) {
     .content-container {
         height: 370px;
     }
@@ -337,7 +337,7 @@ table {
         padding: 15px 0 20px;
     }
     .tab {
-        padding: 2px 30px;
+        padding: 4px 30px;
     }
     .sidebar-item {
         margin: 0 0 30px;
@@ -347,5 +347,55 @@ table {
     }
     .protocol-work {
         padding: 0 20px;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .sidebar,
+    .content {
+        width: 50%;
+    }
+    .sidebar h3 {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .site-header {
+        padding: 10px 0 15px;
+    }
+    .tab-container {
+        margin-top: 11px;
+    }
+    .content-container {
+        margin: 16px 0;
+        height: auto;
+    }
+    .sidebar-content {
+        flex-direction: column-reverse;
+    }
+    .sidebar,
+    .content {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0;
+    }
+    .content video {
+        height: 220px;
+    }
+    .sidebar h3 {
+        font-size: 18px;
+    }
+    .sidebar-item {
+        margin: 0;
+        padding: 10px 16px;
+        border-top: 1px dashed #BCBCBC;
+    }
+    .sec-para {
+        font-size: 12px;
+        margin-top: 8px;
+    }
+    .tab {
+        font-size: 16px;
     }
 }
