@@ -15,14 +15,39 @@ const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
 vid.addEventListener('loadedmetadata', () => {
     const totalScrollHeight = Math.floor(vid.duration * playbackConst);
     setHeight.style.height = `${totalScrollHeight}px`;
+    if (isMobileDevice()) {
+        contentDiv.addEventListener('scroll', scrollPlay);
+
+    } else {
+        requestAnimationFrame(scrollPlay)
+
+    }
 });
 
 let ticking = false;
 
-contentDiv.addEventListener('scroll', () => {
+let lastScrollTop = 0;
+
+function isMobileDevice() {
+    return /Mobile|Android|iPhone|iPad|Tablet/i.test(navigator.userAgent) || window.innerWidth < 768;
+}
+function scrollPlay() {
+    const scrollTop = contentDiv.scrollTop;
+
+    // Only sync window scroll direction with contentDiv on mobile devices
+    if (isMobileDevice()) {
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down
+            window.scrollBy({ top: 50, behavior: 'smooth' });
+        } else if (scrollTop < lastScrollTop) {
+            // Scrolling up
+            window.scrollBy({ top: -50, behavior: 'smooth' });
+        }
+    }
+    lastScrollTop = scrollTop;
+
     if (!ticking) {
         requestAnimationFrame(() => {
-            const scrollTop = contentDiv.scrollTop;
             const frameNumber = scrollTop / playbackConst;
 
             // Avoid unnecessary seeking for smoother video
@@ -35,7 +60,8 @@ contentDiv.addEventListener('scroll', () => {
         });
         ticking = true;
     }
-});
+    requestAnimationFrame(scrollPlay)
+};
 
 function toggleActiveItem(scrollTop) {
     const height = setHeight.offsetHeight;
