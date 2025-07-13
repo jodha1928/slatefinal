@@ -15,28 +15,27 @@ const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
 vid.addEventListener('loadedmetadata', () => {
     const totalScrollHeight = Math.floor(vid.duration * playbackConst);
     setHeight.style.height = `${totalScrollHeight}px`;
-    if (isMobileDevice()) {
-        contentDiv.addEventListener('scroll', scrollPlay);
-
-    } else {
-        requestAnimationFrame(scrollPlay)
-
-    }
 });
 
 let ticking = false;
 
-let lastScrollTop = 0;
+contentDiv.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            const scrollTop = contentDiv.scrollTop;
+            const frameNumber = scrollTop / playbackConst;
 
-function isMobileDevice() {
-    return /Mobile|Android|iPhone|iPad|Tablet/i.test(navigator.userAgent) || window.innerWidth < 768;
-}
-function scrollPlay() {
-    let frameNumber = contentDiv.scrollTop / playbackConst;
-    vid.currentTime = frameNumber;
-    toggleActiveItem(contentDiv.scrollTop);
-    requestAnimationFrame(scrollPlay);
-}
+            // Avoid unnecessary seeking for smoother video
+            if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
+                vid.currentTime = frameNumber;
+            }
+
+            toggleActiveItem(scrollTop);
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
 
 function toggleActiveItem(scrollTop) {
     const height = setHeight.offsetHeight;
