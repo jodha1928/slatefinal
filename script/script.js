@@ -51,9 +51,9 @@ function scrollPlay() {
             const frameNumber = scrollTop / playbackConst;
 
             // Avoid unnecessary seeking for smoother video
-            if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
-                vid.currentTime = frameNumber;
-            }
+            // if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
+            vid.currentTime = frameNumber;
+            // }
 
             toggleActiveItem(scrollTop);
             ticking = false;
