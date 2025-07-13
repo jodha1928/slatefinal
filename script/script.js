@@ -32,36 +32,11 @@ function isMobileDevice() {
     return /Mobile|Android|iPhone|iPad|Tablet/i.test(navigator.userAgent) || window.innerWidth < 768;
 }
 function scrollPlay() {
-    const scrollTop = contentDiv.scrollTop;
-
-    // Only sync window scroll direction with contentDiv on mobile devices
-    if (isMobileDevice()) {
-        if (scrollTop > lastScrollTop) {
-            // Scrolling down
-            window.scrollBy({ top: 50, behavior: 'smooth' });
-        } else if (scrollTop < lastScrollTop) {
-            // Scrolling up
-            window.scrollBy({ top: -50, behavior: 'smooth' });
-        }
-    }
-    lastScrollTop = scrollTop;
-
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            const frameNumber = scrollTop / playbackConst;
-
-            // Avoid unnecessary seeking for smoother video
-            // if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
-            vid.currentTime = frameNumber;
-            // }
-
-            toggleActiveItem(scrollTop);
-            ticking = false;
-        });
-        ticking = true;
-    }
-    requestAnimationFrame(scrollPlay)
-};
+    let frameNumber = contentDiv.scrollTop / playbackConst;
+    vid.currentTime = frameNumber;
+    toggleActiveItem(contentDiv.scrollTop);
+    requestAnimationFrame(scrollPlay);
+}
 
 function toggleActiveItem(scrollTop) {
     const height = setHeight.offsetHeight;
