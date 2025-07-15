@@ -5,9 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>State Protocol</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -27,41 +25,37 @@
         <div id="borrow" class="content-container" style="position: relative;">
             <div class="sidebar-content">
                 <div class="sidebar">
-                    <div class="sidebar-item active" data-index="0">
+                    <div class="sidebar-item" data-index="0">
                         <h3 class="sec-head">
-                            Borrowing JUSD
+                            Creating a Vault
                             <span class="sec-count">( 01 )</span>
                         </h3>
-                        <p class="sec-para">
-                            Users deposit collateral and receive JUSD in return.
-                        </p>
                     </div>
                     <div class="sidebar-item" data-index="1">
                         <h3 class="sec-head">
-                            Borrowing JUSD
+                            Managing a Vault
                             <span class="sec-count">( 02 )</span>
                         </h3>
-                        <p class="sec-para">
-                            Users deposit collateral and receive JUSD in return.
-                        </p>
+                        <div class="inner-buttons">
+                            <button class="action-item active">
+                                Withdraw JUSD
+                            </button>
+                            <button class="action-item">
+                                Withdraw Collateral
+                            </button>
+                            <button class="action-item">
+                                Repay JUSD
+                            </button>
+                            <button class="action-item">
+                                Add Collateral
+                            </button>
+                        </div>
                     </div>
                     <div class="sidebar-item" data-index="2">
                         <h3 class="sec-head">
-                            Liquidation Process
+                            Liquidation
                             <span class="sec-count">( 03 )</span>
                         </h3>
-                        <p class="sec-para">
-                            Users deposit collateral and receive JUSD in return.
-                        </p>
-                    </div>
-                    <div class="sidebar-item" data-index="3">
-                        <h3 class="sec-head">
-                            Borrowing JUSD
-                            <span class="sec-count">( 04 )</span>
-                        </h3>
-                        <p class="sec-para">
-                            Users deposit collateral and receive JUSD in return.
-                        </p>
                     </div>
                 </div>
                 <div class="content">
@@ -119,8 +113,7 @@
             </div>
         </div>
     </section>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="./script/script.js"></script>
 </body>
 

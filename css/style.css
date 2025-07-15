@@ -21,6 +21,10 @@
     src: url("../css/font/IBMPlexMono-Regular.woff");
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -223,6 +227,32 @@ table {
     border-radius: 5px;
 }
 
+.inner-buttons {
+    display: none;
+    flex-wrap: wrap;
+    margin: 20px -8px -8px;
+}
+
+.inner-buttons button {
+    width: calc(50% - 16px);
+    margin: 0 8px 16px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    background-color: transparent;
+    font-family: "apercu pro";
+    border: 1px solid #ADADAD;
+    border-radius: 2px;
+    padding: 8px;
+    color: #888888;
+    cursor: pointer;
+}
+
+.inner-buttons button.active {
+    background-color: #000;
+    border-color: #000;
+    color: #fff;
+}
+
 .content-container::-webkit-scrollbar {
     display: none;
     /* Chrome, Safari and Opera */
@@ -245,22 +275,23 @@ table {
 .sidebar {
     width: 523px;
     border-right: 1px dashed #ccc;
-    padding: 30px;
+    padding: 50px 30px 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .sidebar h3 {
     font-size: 24px;
     letter-spacing: -1.68px;
-    margin-bottom: 5px;
 }
 
 .sidebar-item {
-    margin: 0 0 50px;
+    margin: 0 0 30px;
     color: #999;
     cursor: pointer;
+    border: 1px dashed #BCBCBC;
+    padding: 20px;
+    border-radius: 2px;
 }
 
 .sidebar-item:last-child {
@@ -270,6 +301,11 @@ table {
 .sidebar-item.active {
     color: #000;
     font-weight: bold;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(234, 234, 234, 0.5) 65.39%);
+}
+
+.sidebar-item.active .inner-buttons {
+    display: flex;
 }
 
 .content {
@@ -294,6 +330,7 @@ table {
     font-family: "Merriweather", serif;
     font-weight: 300;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -341,9 +378,6 @@ table {
     .tab {
         padding: 4px 30px;
     }
-    .sidebar-item {
-        margin: 0 0 30px;
-    }
     .content video {
         height: 360px;
     }
@@ -372,9 +406,19 @@ table {
     .content-container {
         margin: 16px 0;
         height: auto;
+        border: none;
     }
     .sidebar-content {
         flex-direction: column-reverse;
+    }
+    .sidebar .sec-head {
+        font-size: 12px;
+        letter-spacing: -1px;
+        text-align: center;
+        display: block;
+        border: 1px dashed #BCBCBC;
+        padding: 15px 10px;
+        border-radius: 2px;
     }
     .sidebar,
     .content {
@@ -383,58 +427,29 @@ table {
         padding: 0;
         position: relative;
     }
+    .content {
+        border: 1px dashed #BCBCBC;
+        border-radius: 4px;
+        margin-bottom: 8px;
+    }
     .sidebar {
         border: none;
+        margin: 0 -2.5px;
+        width: auto;
+        flex-direction: row;
+    }
+    .sec-count {
+        display: none;
     }
     .content video {
         height: 420px;
     }
-    .sidebar h3 {
-        font-size: 18px;
-    }
     .sidebar-item {
-        margin: 0;
-        padding: 10px 16px 20px;
-        border-top: 1px dashed #BCBCBC;
+        margin: 0 2.5px;
+        padding: 0;
+        flex: 1;
+        border: none;
         border-radius: 4px;
         box-sizing: border-box;
-    }
-    .sidebar-item.previous {
-        padding-bottom: 130px;
-    }
-    .sidebar-item:first-child~.sidebar-item {
-        position: absolute;
-        left: 0;
-        opacity: 0;
-        background-color: #fff;
-        width: 100%;
-        top: 100%;
-        transition: 0.4s all ease-in-out;
-    }
-    .sidebar-item:nth-child(2).active,
-    .sidebar-item:nth-child(2).previous {
-        opacity: 1;
-        top: 40px;
-    }
-    .sidebar-item:nth-child(3).active,
-    .sidebar-item:nth-child(3).previous {
-        opacity: 1;
-        top: 80px;
-    }
-    .sidebar-item:nth-child(4).active,
-    .sidebar-item:nth-child(4).previous {
-        opacity: 1;
-        top: 120px;
-    }
-    .sec-para {
-        font-size: 12px;
-        margin-top: 8px;
-    }
-    .tab {
-        font-size: 16px;
-    }
-    #scrollVideo {
-        transform: translateZ(0);
-        will-change: transform;
     }
 }

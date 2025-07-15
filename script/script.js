@@ -6,51 +6,70 @@ function switchTab(tabName) {
     document.getElementById(tabName).style.display = 'flex';
 }
 
-const playbackConst = 200;
-const setHeight = document.getElementById("set-height");
-const vid = document.getElementById('scrollVideo');
-const contentDiv = document.querySelector('#borrow');
-const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
+const sidebarItems = document.querySelectorAll('.sidebar-item');
 
-vid.addEventListener('loadedmetadata', () => {
-    const totalScrollHeight = Math.floor(vid.duration * playbackConst);
-    setHeight.style.height = `${totalScrollHeight}px`;
-});
+sidebarItems.forEach(item => {
+    item.addEventListener('click', () => {
+        sidebarItems.forEach(el => el.classList.remove('active'));
+        item.classList.add('active');
+    });
 
-let ticking = false;
-
-contentDiv.addEventListener('scroll', () => {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            const scrollTop = contentDiv.scrollTop;
-            const frameNumber = scrollTop / playbackConst;
-
-            // Avoid unnecessary seeking for smoother video
-            if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
-                vid.currentTime = frameNumber;
-            }
-
-            toggleActiveItem(scrollTop);
-            ticking = false;
+    const actionButtons = item.querySelectorAll('.action-item');
+    actionButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            actionButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         });
-        ticking = true;
-    }
+    });
 });
 
-function toggleActiveItem(scrollTop) {
-    const height = setHeight.offsetHeight;
-    const totalItems = sidebarItems.length;
-    const itemHeight = height / totalItems;
 
-    let activeIndex = -1;
+// const playbackConst = 200;
+// const setHeight = document.getElementById("set-height");
+// const vid = document.getElementById('scrollVideo');
+// const contentDiv = document.querySelector('#borrow');
+// const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
 
-    sidebarItems.forEach((item, i) => {
-        const isActive = scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight;
-        item.classList.toggle('active', isActive);
-        if (isActive) activeIndex = i;
-    });
+// vid.addEventListener('loadedmetadata', () => {
+//     const totalScrollHeight = Math.floor(vid.duration * playbackConst);
+//     setHeight.style.height = `${totalScrollHeight}px`;
+// });
 
-    sidebarItems.forEach((item, i) => {
-        item.classList.toggle('previous', i < activeIndex);
-    });
-}
+// let ticking = false;
+
+// contentDiv.addEventListener('scroll', () => {
+//     if (!ticking) {
+//         requestAnimationFrame(() => {
+//             const scrollTop = contentDiv.scrollTop;
+//             const frameNumber = scrollTop / playbackConst;
+
+//             // Avoid unnecessary seeking for smoother video
+//             if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
+//                 vid.currentTime = frameNumber;
+//             }
+
+//             toggleActiveItem(scrollTop);
+//             ticking = false;
+//         });
+//         ticking = true;
+//     }
+// });
+
+// function toggleActiveItem(scrollTop) {
+//     const height = setHeight.offsetHeight;
+//     const totalItems = sidebarItems.length;
+//     const itemHeight = height / totalItems;
+
+//     let activeIndex = -1;
+
+//     sidebarItems.forEach((item, i) => {
+//         const isActive = scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight;
+//         item.classList.toggle('active', isActive);
+//         if (isActive) activeIndex = i;
+//     });
+
+//     sidebarItems.forEach((item, i) => {
+//         item.classList.toggle('previous', i < activeIndex);
+//     });
+// }
