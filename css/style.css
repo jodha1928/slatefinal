@@ -397,6 +397,10 @@ table {
 }
 
 @media only screen and (max-width: 767px) {
+    .protocol-work,
+    body {
+        overflow-x: hidden;
+    }
     .site-header {
         padding: 10px 0 15px;
     }
@@ -436,7 +440,25 @@ table {
         border: none;
         margin: 0 -2.5px;
         width: auto;
+        min-height: 140px;
         flex-direction: row;
+    }
+    .sidebar .inner-buttons {
+        position: absolute;
+        left: 6px;
+        bottom: 0;
+        width: calc(100vw - 31px);
+    }
+    .inner-buttons button {
+        font-size: 14px;
+        margin: 0 5px 10px;
+        width: calc(50% - 10px);
+        background-color: rgba(199, 199, 199, 0.32);
+        border: 1px solid #ADADAD;
+        letter-spacing: -0.7px;
+    }
+    .sidebar-item.active .sec-head {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(234, 234, 234, 0.5) 65.39%);
     }
     .sec-count {
         display: none;
