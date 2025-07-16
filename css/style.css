@@ -416,6 +416,7 @@ table {
     .sidebar-content {
         flex-direction: column-reverse;
         overflow: hidden;
+        padding-bottom: 140px;
     }
     .sidebar-item.active {
         background: transparent;
@@ -445,14 +446,13 @@ table {
         border: none;
         margin: 0 -2.5px;
         width: auto;
-        min-height: 140px;
         flex-direction: row;
     }
     .sidebar .inner-buttons {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        bottom: -5px;
+        top: calc(100% + 15px);
         width: 100vw;
         margin: 0;
         padding: 0 25px;
