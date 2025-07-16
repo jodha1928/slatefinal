@@ -9,16 +9,25 @@ function switchTab(tabName) {
 const sidebarItems = document.querySelectorAll('.sidebar-item');
 
 sidebarItems.forEach(item => {
-    item.addEventListener('click', () => {
+    const header = item.querySelector('.sec-head');
+
+    // Activate sidebar-item on sec-head click
+    header.addEventListener('click', () => {
+        // Remove 'active' from all sidebar-items
         sidebarItems.forEach(el => el.classList.remove('active'));
+        // Add 'active' to the clicked item's parent
         item.classList.add('active');
     });
 
+    // Handle action-item clicks inside this sidebar-item
     const actionButtons = item.querySelectorAll('.action-item');
     actionButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
+            // Prevent bubbling to avoid triggering sec-head handler
             e.stopPropagation();
+            // Remove 'active' from all buttons in this sidebar-item
             actionButtons.forEach(b => b.classList.remove('active'));
+            // Add 'active' to the clicked button
             btn.classList.add('active');
         });
     });

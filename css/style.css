@@ -230,7 +230,8 @@ table {
 .inner-buttons {
     display: none;
     flex-wrap: wrap;
-    margin: 20px -8px -8px;
+    margin: 0 -8px -8px;
+    padding: 5px 20px 20px;
 }
 
 .inner-buttons button {
@@ -282,6 +283,7 @@ table {
 
 .sidebar h3 {
     font-size: 24px;
+    padding: 20px;
     letter-spacing: -1.68px;
 }
 
@@ -290,7 +292,6 @@ table {
     color: #999;
     cursor: pointer;
     border: 1px dashed #BCBCBC;
-    padding: 20px;
     border-radius: 2px;
 }
 
@@ -417,7 +418,7 @@ table {
         overflow: hidden;
     }
     .sidebar-item.active {
-        background-color: transparent;
+        background: transparent;
     }
     .sidebar .sec-head {
         font-size: 12px;
@@ -449,9 +450,12 @@ table {
     }
     .sidebar .inner-buttons {
         position: absolute;
-        left: 6px;
-        bottom: 0;
-        width: calc(100vw - 31px);
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -5px;
+        width: 100vw;
+        margin: 0;
+        padding: 0 25px;
     }
     .inner-buttons button {
         font-size: 14px;
