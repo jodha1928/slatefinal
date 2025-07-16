@@ -10,31 +10,19 @@ const sidebarItems = document.querySelectorAll('.sidebar-item');
 
 sidebarItems.forEach(item => {
     const header = item.querySelector('.sec-head');
-
-    // Only respond to clicks on .sec-head
     header.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default browser action
-        e.stopPropagation(); // Prevent event bubbling
-
-        // Remove active from all sidebar-items
+        e.preventDefault();
+        e.stopPropagation();
         sidebarItems.forEach(el => el.classList.remove('active'));
-
-        // Add active to the clicked sidebar-item
         item.classList.add('active');
     });
 
-    // Handle .action-item button clicks within this .sidebar-item
     const actionButtons = item.querySelectorAll('.action-item');
-
     actionButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent button's default behavior (if any)
-            e.stopPropagation(); // Prevent bubbling up to .sec-head or .sidebar-item
-
-            // Remove 'active' from all buttons in this sidebar-item
+            e.preventDefault();
+            e.stopPropagation();
             actionButtons.forEach(b => b.classList.remove('active'));
-
-            // Add 'active' to the clicked button
             btn.classList.add('active');
         });
     });

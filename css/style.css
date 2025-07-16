@@ -367,9 +367,6 @@ table {
 } */
 
 @media only screen and (max-width: 1440px) {
-    .content-container {
-        height: 370px;
-    }
     .main-heading {
         font-size: 24px;
     }
@@ -378,9 +375,6 @@ table {
     }
     .tab {
         padding: 4px 30px;
-    }
-    .content video {
-        height: 360px;
     }
     .protocol-work {
         padding: 0 20px;
@@ -392,8 +386,14 @@ table {
     .content {
         width: 50%;
     }
+    .sidebar {
+        padding: 30px;
+    }
     .sidebar h3 {
         font-size: 20px;
+    }
+    .inner-buttons button {
+        font-size: 14px;
     }
 }
 
@@ -458,7 +458,6 @@ table {
         padding: 0 25px;
     }
     .inner-buttons button {
-        font-size: 14px;
         margin: 0 5px 10px;
         width: calc(50% - 10px);
         background-color: rgba(199, 199, 199, 0.32);
