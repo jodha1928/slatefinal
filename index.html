@@ -5,7 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>State Protocol</title>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -59,13 +61,9 @@
                     </div>
                 </div>
                 <div class="content">
-                    <video width="100%" height="100%" id="scrollVideo" playsinline preload="auto">
-                        <source src="./assets/slatelending.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                    <canvas id="canvas" width="500" height="500"></canvas>
                 </div>
             </div>
-            <div id="set-height"></div>
         </div>
 
         <div id="earn" class="content-container" style="display: none;">
@@ -112,8 +110,18 @@
             </div>
         </div>
     </section>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@rive-app/canvas"></script>
+    // Add the following script tag to your web page to get the latest version:
+
+
+    <script src="https://unpkg.com/@rive-app/canvas"></script>
+    <script src="https://unpkg.com/@rive-app/canvas@2.24.0"></script>
+
     <script src="./script/script.js"></script>
+    <script src="./script/riveIntegration.js"></script>
+
 </body>
 
 </html>
