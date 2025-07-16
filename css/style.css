@@ -414,6 +414,10 @@ table {
     }
     .sidebar-content {
         flex-direction: column-reverse;
+        overflow: hidden;
+    }
+    .sidebar-item.active {
+        background-color: transparent;
     }
     .sidebar .sec-head {
         font-size: 12px;
