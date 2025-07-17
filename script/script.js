@@ -6,45 +6,88 @@ function switchTab(tabName) {
     document.getElementById(tabName).style.display = 'flex';
 }
 
-const sidebarItems = document.querySelectorAll('.sidebar-item');
-const videoPlayer = document.getElementById('videoPlayer');
+// Collect all unique video sources
+const videoSources = new Set();
 
-sidebarItems.forEach(item => {
-    const header = item.querySelector('.sec-head');
-    header.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        sidebarItems.forEach(el => el.classList.remove('active'));
-        item.classList.add('active');
+document.querySelectorAll('[data-video]').forEach(el => {
+    const src = el.getAttribute('data-video');
+    if (src) videoSources.add(src);
+});
 
-        if (item.getAttribute('data-index') === "1") {
-            const activeButton = item.querySelector('.action-item.active');
-            videoSrc = activeButton.getAttribute('data-video');
-        } else {
-            videoSrc = header.getAttribute('data-video');
-        }
+// Create hidden preloading container
+const preloadContainer = document.createElement('div');
+preloadContainer.style.display = 'none';
 
-        if (videoSrc) {
-            videoPlayer.src = videoSrc;
-            videoPlayer.play();
-        }
-    });
+// Create video elements for each source
+videoSources.forEach(src => {
+    const video = document.createElement('video');
+    video.src = src;
+    video.preload = 'auto';
+    preloadContainer.appendChild(video);
+});
 
-    const actionButtons = item.querySelectorAll('.action-item');
-    actionButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+// Append preloading videos to body
+document.body.appendChild(preloadContainer);
+
+function setupSidebarVideoSync(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const sidebarItems = container.querySelectorAll('.sidebar-item');
+    const videoPlayer = container.querySelector('video');
+
+    sidebarItems.forEach(item => {
+        const header = item.querySelector('.sec-head');
+
+        // Click on .sec-head
+        header.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            actionButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const videoSrc = btn.getAttribute('data-video');
-            if (videoSrc) {
+
+            // Remove active from all items in this container only
+            sidebarItems.forEach(el => el.classList.remove('active'));
+            item.classList.add('active');
+
+            let videoSrc;
+
+            if (item.getAttribute('data-index') === "1") {
+                // Use currently active button inside item
+                const activeButton = item.querySelector('.action-item.active');
+                videoSrc = activeButton.getAttribute('data-video');
+            } else {
+                videoSrc = header.getAttribute('data-video');
+            }
+
+            if (videoSrc && videoPlayer) {
                 videoPlayer.src = videoSrc;
                 videoPlayer.play();
             }
         });
+
+        // Click on action-item buttons
+        const actionButtons = item.querySelectorAll('.action-item');
+        actionButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Remove active from all buttons in this section
+                actionButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const videoSrc = btn.getAttribute('data-video');
+                if (videoSrc && videoPlayer) {
+                    videoPlayer.src = videoSrc;
+                    videoPlayer.play();
+                }
+            });
+        });
     });
-});
+}
+
+// Initialize both tabs
+setupSidebarVideoSync('borrow');
+setupSidebarVideoSync('earn');
 
 
 // const playbackConst = 200;
