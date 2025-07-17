@@ -5,9 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>State Protocol</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -28,90 +26,74 @@
             <div class="sidebar-content">
                 <div class="sidebar">
                     <div class="sidebar-item" data-index="0">
-                        <h3 class="sec-head">
+                        <h3 class="sec-head" data-video="./assets/lendingvideos/creating_vault (1).mp4">
                             Creating a Vault
                             <span class="sec-count">( 01 )</span>
                         </h3>
                     </div>
                     <div class="sidebar-item" data-index="1">
-                        <h3 class="sec-head">
+                        <h3 class="sec-head" data-video="./assets/lendingvideos/withdraw_jusd.mp4">
                             Managing a Vault
                             <span class="sec-count">( 02 )</span>
                         </h3>
                         <div class="inner-buttons">
-                            <button class="action-item active">
+                            <button class="action-item active" data-video="./assets/lendingvideos/withdraw_jusd.mp4">
                                 Withdraw JUSD
                             </button>
-                            <button class="action-item">
+                            <button class="action-item" data-video="./assets/lendingvideos/withdraw_collateral.mp4">
                                 Withdraw Collateral
                             </button>
-                            <button class="action-item">
+                            <button class="action-item" data-video="./assets/lendingvideos/repay_jusd.mp4">
                                 Repay JUSD
                             </button>
-                            <button class="action-item">
+                            <button class="action-item" data-video="./assets/lendingvideos/add_collateral.mp4">
                                 Add Collateral
                             </button>
                         </div>
                     </div>
                     <div class="sidebar-item" data-index="2">
-                        <h3 class="sec-head">
+                        <h3 class="sec-head" data-video="./assets/lendingvideos/liquidation.mp4">
                             Liquidation
                             <span class="sec-count">( 03 )</span>
                         </h3>
                     </div>
                 </div>
                 <div class="content">
-                    <canvas id="canvas" width="500" height="500"></canvas>
+                    <video id="videoPlayer" src="videos/withdraw-jusd.mp4" autoplay muted></video>
+                    <!-- <canvas id="canvas" width="500" height="500"></canvas> -->
                 </div>
             </div>
         </div>
 
         <div id="earn" class="content-container" style="display: none;">
-            <div class="sidebar">
-                <div class="sidebar-item active">
-                    <h3 class="sec-head">
-                        Borrowing JUSD
-                        <span class="sec-count">( 01 )</span>
-                    </h3>
-                    <p class="sec-para">
-                        Users deposit collateral and receive JUSD in return.
-                    </p>
+            <div class="sidebar-content">
+                <div class="sidebar">
+                    <div class="sidebar-item" data-index="0">
+                        <h3 class="sec-head">
+                            Lorem Ipsum
+                            <span class="sec-count">( 01 )</span>
+                        </h3>
+                    </div>
+                    <div class="sidebar-item" data-index="1">
+                        <h3 class="sec-head">
+                            Lorem Ipsum
+                            <span class="sec-count">( 02 )</span>
+                        </h3>
+                    </div>
+                    <div class="sidebar-item" data-index="2">
+                        <h3 class="sec-head">
+                            Lorem Ipsum
+                            <span class="sec-count">( 03 )</span>
+                        </h3>
+                    </div>
                 </div>
-                <div class="sidebar-item">
-                    <h3 class="sec-head">
-                        Borrowing JUSD
-                        <span class="sec-count">( 02 )</span>
-                    </h3>
-                    <p class="sec-para">
-                        Users deposit collateral and receive JUSD in return.
-                    </p>
+                <div class="content">
+                    <!-- <canvas id="canvas" width="500" height="500"></canvas> -->
                 </div>
-                <div class="sidebar-item">
-                    <h3 class="sec-head">
-                        Liquidation Process
-                        <span class="sec-count">( 03 )</span>
-                    </h3>
-                    <p class="sec-para">
-                        Users deposit collateral and receive JUSD in return.
-                    </p>
-                </div>
-                <div class="sidebar-item">
-                    <h3 class="sec-head">
-                        Borrowing JUSD
-                        <span class="sec-count">( 04 )</span>
-                    </h3>
-                    <p class="sec-para">
-                        Users deposit collateral and receive JUSD in return.
-                    </p>
-                </div>
-            </div>
-            <div class="content">
-                <div class="image-placeholder">[ Insert 3D Illustration or Image Here ]</div>
             </div>
         </div>
     </section>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@rive-app/canvas"></script>
 
 

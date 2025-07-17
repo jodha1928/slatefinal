@@ -7,6 +7,7 @@ function switchTab(tabName) {
 }
 
 const sidebarItems = document.querySelectorAll('.sidebar-item');
+const videoPlayer = document.getElementById('videoPlayer');
 
 sidebarItems.forEach(item => {
     const header = item.querySelector('.sec-head');
@@ -15,6 +16,18 @@ sidebarItems.forEach(item => {
         e.stopPropagation();
         sidebarItems.forEach(el => el.classList.remove('active'));
         item.classList.add('active');
+
+        if (item.getAttribute('data-index') === "1") {
+            const activeButton = item.querySelector('.action-item.active');
+            videoSrc = activeButton.getAttribute('data-video');
+        } else {
+            videoSrc = header.getAttribute('data-video');
+        }
+
+        if (videoSrc) {
+            videoPlayer.src = videoSrc;
+            videoPlayer.play();
+        }
     });
 
     const actionButtons = item.querySelectorAll('.action-item');
@@ -24,6 +37,11 @@ sidebarItems.forEach(item => {
             e.stopPropagation();
             actionButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            const videoSrc = btn.getAttribute('data-video');
+            if (videoSrc) {
+                videoPlayer.src = videoSrc;
+                videoPlayer.play();
+            }
         });
     });
 });
