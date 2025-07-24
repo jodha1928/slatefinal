@@ -26,7 +26,7 @@ videoSources.forEach(src => {
     preloadContainer.appendChild(video);
 });
 
-// Append preloading videos to body
+// Append preloading videos to bodyasdas
 document.body.appendChild(preloadContainer);
 
 function setupSidebarVideoSync(containerId) {
@@ -90,51 +90,19 @@ setupSidebarVideoSync('borrow');
 setupSidebarVideoSync('earn');
 
 
-// const playbackConst = 200;
-// const setHeight = document.getElementById("set-height");
-// const vid = document.getElementById('scrollVideo');
-// const contentDiv = document.querySelector('#borrow');
-// const sidebarItems = document.querySelectorAll('#borrow .sidebar-item');
-
-// vid.addEventListener('loadedmetadata', () => {
-//     const totalScrollHeight = Math.floor(vid.duration * playbackConst);
-//     setHeight.style.height = `${totalScrollHeight}px`;
-// });
-
-// let ticking = false;
-
-// contentDiv.addEventListener('scroll', () => {
-//     if (!ticking) {
-//         requestAnimationFrame(() => {
-//             const scrollTop = contentDiv.scrollTop;
-//             const frameNumber = scrollTop / playbackConst;
-
-//             // Avoid unnecessary seeking for smoother video
-//             if (Math.abs(vid.currentTime - frameNumber) > 0.03) {
-//                 vid.currentTime = frameNumber;
-//             }
-
-//             toggleActiveItem(scrollTop);
-//             ticking = false;
-//         });
-//         ticking = true;
-//     }
-// });
-
-// function toggleActiveItem(scrollTop) {
-//     const height = setHeight.offsetHeight;
-//     const totalItems = sidebarItems.length;
-//     const itemHeight = height / totalItems;
-
-//     let activeIndex = -1;
-
-//     sidebarItems.forEach((item, i) => {
-//         const isActive = scrollTop >= i * itemHeight && scrollTop < (i + 1) * itemHeight;
-//         item.classList.toggle('active', isActive);
-//         if (isActive) activeIndex = i;
-//     });
-
-//     sidebarItems.forEach((item, i) => {
-//         item.classList.toggle('previous', i < activeIndex);
-//     });
-// }
+fetch('./header.html') // Ensure the path to header.html is correct
+    .then(res => {
+        if (!res.ok) {
+            throw new Error(`Failed to fetch header.html: ${res.status} ${res.statusText}`);
+        }
+        return res.text();
+    })
+    .then(data => {
+        const headerPlaceholder = document.getElementById('header-placeholder');
+        if (headerPlaceholder) {
+            headerPlaceholder.innerHTML = data;
+        } else {
+            console.error('Element with ID "header-placeholder" not found.');
+        }
+    })
+    .catch(err => console.error('Error loading header:', err));
